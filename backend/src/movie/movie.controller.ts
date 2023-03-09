@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Req, Body, Param } from '@nestjs/common';
+import { Controller, Get, Post, Req, Body, Param, Query } from '@nestjs/common';
 import { ReturnData } from 'src/interfaces/Return.Data.interface';
 import { Movie } from './movie.entity';
 import { Request } from 'express';
@@ -45,7 +45,7 @@ export class MovieController {
     }
 
     @Get()
-    async find(@Req() request: Request): Promise<ReturnData<Array<Movie>>> {
+    async find(@Query() query): Promise<ReturnData<Array<Movie>>> {
         try {
 
             let limit = 100
@@ -53,7 +53,7 @@ export class MovieController {
             let search = ""
             let sort: {[key: string]: string} = {}
 
-            let query = request.query
+            //let query = request.query
 
             if(query) {
 
